@@ -1,12 +1,19 @@
-
+const {getAllVideoGamesController,getQueryVideoGamesController,} = require('../controllers/videoGamesControllers')
 
 const getVideoGames = async (req,res)=>{
     const {name} = req.query
-    if (name) {
-        res.status(200).send('Esta ruta debe obtener los primeros 15 videojuegos que se encuentren con la palabra recibida por query.')
-    } else {
-        res.status(200).send('Obtiene un arreglo de objetos, donde cada objeto es un videojuego con su información.')
+    try {
+        if (name) {
+            const detailGame = await getQueryVideoGamesController(name)
+            res.status(200).send(detailGame)
+        } else {
+            const videoGames = await getAllVideoGamesController()
+            res.status(200).json(videoGames)
+        }    
+    } catch (error) {
+        res.status(400).send({error:error.message})
     }
+
 }
 
 
