@@ -1,6 +1,6 @@
 const axios = require('axios')
 const {Videogame} = require('../db.js')
-const { cleanGames } = require('./cleaners')
+const { cleanGames, cleanDetail } = require('./cleaners')
 const{API_KEY}= process.env
 
 const getAllVideoGamesController = async () => {
@@ -24,7 +24,7 @@ const getAllVideoGamesController = async () => {
     return [...dbVideoGames, ...cleandedApiGames];
   }
 
-const getQueryVideoGamesController = async (query)=>{
+const getQueryVideoGamesController = async (query) => {   
     const queryGames = (await getAllVideoGamesController()).filter(e => e.name.toLowerCase().includes(query.toLowerCase()))
     if (queryGames.length !== 0) {
         return queryGames
@@ -33,4 +33,21 @@ const getQueryVideoGamesController = async (query)=>{
     }
 }
 
-module.exports ={getAllVideoGamesController,getQueryVideoGamesController}
+const getIdVideoGameController = async (source,id) => {
+    if (source === "bdd") {
+        const detail = await Videogame.findByPk(id)
+        return detail
+    }
+    if (source === "api") {
+        console.log(id)
+        const detail = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+            .then(r => r.data)
+        return cleanDetail(detail) 
+    }
+}
+
+const postVideogameController = async (name,description,platforms,image,relaseDate,rating,genres) => {
+   return await Videogame.create({name,description,platforms,image,relaseDate,rating,genres})
+}
+
+module.exports = {getIdVideoGameController,getAllVideoGamesController,getQueryVideoGamesController,postVideogameController}

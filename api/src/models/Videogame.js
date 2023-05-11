@@ -17,21 +17,21 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull:false
     },
-    plataforms:{
-      type: DataTypes.STRING,
+    platforms:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull:false
     },
     image:{
       type:DataTypes.TEXT,
-      allowNull:false
     },
     relaseDate:{
-       type:DataTypes.DATE,
+       type:DataTypes.DATEONLY,
        allowNull:false
     },
     rating:{
       type:DataTypes.DECIMAL,
       allowNull:false
     }
-  });
+  },
+  {timestamps:false});
 };

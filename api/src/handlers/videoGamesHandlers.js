@@ -1,4 +1,4 @@
-const {getAllVideoGamesController,getQueryVideoGamesController,} = require('../controllers/videoGamesControllers')
+const {getAllVideoGamesController,getQueryVideoGamesController, postVideogameController, getIdVideoGameController,} = require('../controllers/videoGamesControllers')
 
 const getVideoGames = async (req,res)=>{
     const {name} = req.query
@@ -16,13 +16,25 @@ const getVideoGames = async (req,res)=>{
 
 }
 
-
 const getVideoGameById = async (req,res)=>{
-    res.status(200).send('Esta ruta obtiene el detalle de un videojuego específico. Es decir que devuelve un objeto con la información pedida en el detalle de un videojuego. ')
+    const {id} = req.params 
+    const source = isNaN(id) ? "bdd" : "api";
+    try {
+        const detailGame = await getIdVideoGameController(source,id)
+        res.status(200).json(detailGame)
+    } catch (error) {
+        res.status(400).send({error: error.message})
+    }
 }
 
 const postVideoGames = async (req,res) =>{
-    res.status(200).send('Esta ruta recibirá todos los datos necesarios para crear un videojuego y relacionarlo con sus géneros solicitados.')
+    const {name,description,platforms,image,relaseDate,rating,genres} = req.body
+    try {
+        await postVideogameController(name,description,platforms,image,relaseDate,rating,genres)
+        res.status(200).send('video game created successfully')
+    } catch (error) {
+        res.status(400).send({error: error.message})
+    }
 }
 
 module.exports = {getVideoGameById,getVideoGames,postVideoGames}
