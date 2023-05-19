@@ -18,7 +18,7 @@ const cleanDetail = (e) =>{
         genres:e.genres.map(e=> e.name),
         releaseDate:e.released,
         platforms:e.platforms.map(e => e.platform.name),
-        description:e.description,
+        description:e.description_raw,
         rating:e.rating}
 }
 module.exports = {cleanGames,cleanDetail}

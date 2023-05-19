@@ -1,0 +1,52 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilos para el logo */
+nav h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+/* Estilos para los enlaces */
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+/* Estilos para el enlace activo */
+nav a:active{
+    font-weight: bold;
+    color: blue;
+}
+
+/* Estilos para el cuadro de búsqueda */
+nav input[type="search"] {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+}
+
+/* Estilos para el botón de búsqueda */
+nav button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de búsqueda al pasar el cursor */
+nav button:hover {
+    background-color: #ddd;
+}

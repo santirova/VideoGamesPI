@@ -1,11 +1,9 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { CardsContainer } from '../../Components/CardsContainer/CardsContainer'
 
 const HomePage = () => {
-    const videoGames = useSelector(state => state.allVideoGames)
-    console.log(videoGames)
   return (
-    <div>Estas en home</div>
+    <CardsContainer/>
   )
 }
 

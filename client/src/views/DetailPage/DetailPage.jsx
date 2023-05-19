@@ -1,8 +1,9 @@
 import React from 'react'
+import { DetailCard } from '../../Components/DetailCard/DetailCard'
 
 const DetailPage = () => {
   return (
-    <div>Estan en detail</div>
+      <DetailCard/>
   )
 }
 

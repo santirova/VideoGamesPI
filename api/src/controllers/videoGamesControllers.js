@@ -15,7 +15,6 @@ const getAllVideoGamesController = async () => {
     }
   
     const allPages = await Promise.all(pageRequests);
-    console.log(allPages)
     const allGames = allPages.flat();
   
     const cleandedApiGames = cleanGames(allGames);
@@ -42,6 +41,7 @@ const getIdVideoGameController = async (source,id) => {
         console.log(id)
         const detail = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
             .then(r => r.data)
+        console.log(detail)
         return cleanDetail(detail) 
     }
 }

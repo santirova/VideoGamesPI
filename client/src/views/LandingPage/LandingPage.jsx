@@ -1,16 +1,7 @@
-import React, { useEffect } from 'react'
-import {useDispatch} from 'react-redux'
-import {getAllVideoGames, getGenres} from '../../Redux/actions'
+import React from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const LandingPage = () => {
-    const dispatch = useDispatch()
-
-    useEffect(()=>{
-        dispatch(getAllVideoGames())
-        dispatch(getGenres())
-    },[dispatch])
-
   return (
     <div>
         <Link to='/home'>
