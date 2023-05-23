@@ -16,7 +16,11 @@ export const DetailCard = () => {
   const detail = useSelector(state => state.detailVideoGame);
 
   if (!detail) {
-    return <h1>LOADING...</h1>;
+    return (
+      <div className={style.loadingContainer}>
+        <h1 className={style.loading}>LOADING...</h1>
+      </div>
+    )
   }
 
   return (

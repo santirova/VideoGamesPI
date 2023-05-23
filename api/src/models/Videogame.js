@@ -24,13 +24,21 @@ module.exports = (sequelize) => {
     image:{
       type:DataTypes.TEXT,
     },
-    relaseDate:{
+    releaseDate:{
        type:DataTypes.DATEONLY,
        allowNull:false
     },
     rating:{
       type:DataTypes.DECIMAL,
       allowNull:false
+    },
+    genres:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull:false
+    },
+    created:{
+      type:DataTypes.BOOLEAN,
+      defaultValue:true
     }
   },
   {timestamps:false});

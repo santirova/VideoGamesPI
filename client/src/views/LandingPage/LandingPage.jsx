@@ -1,17 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import style from './LandingPage.module.css';
 
 const LandingPage = () => {
   return (
-    <div>
-        <Link to='/home'>
-            <button>
-                vamos a ver los video juegos
-            </button>  
-        </Link>
-        
+    <div className={style.landingPage}>
+      <h1 className={style.title}>VideoGames Portal</h1>
+      <Link to="/home">
+        <button className={style.button}>Let's Explore</button>
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

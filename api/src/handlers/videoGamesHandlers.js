@@ -28,9 +28,9 @@ const getVideoGameById = async (req,res)=>{
 }
 
 const postVideoGames = async (req,res) =>{
-    const {name,description,platforms,image,relaseDate,rating,genres} = req.body
+    const {name,description,platforms,image,releaseDate,rating,genres} = req.body
     try {
-        await postVideogameController(name,description,platforms,image,relaseDate,rating,genres)
+        await postVideogameController(name,description,platforms,image,releaseDate,rating,genres)
         res.status(200).send('video game created successfully')
     } catch (error) {
         res.status(400).send({error: error.message})

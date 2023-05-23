@@ -6,6 +6,8 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   text-align: center;
+  background-color: #0C112B;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card .imageContainer {
@@ -14,7 +16,7 @@
   justify-content: center;
 }
 
-.card img {
+.card .imageContainer img {
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -33,34 +35,39 @@
   margin-bottom: 10px;
 }
 
+.card .name h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #fff;
+}
+
 .card .genres {
   margin-bottom: 10px;
 }
 
-.card h2 {
-  font-size: 18px;
-  margin: 0;
-}
-
-.card h3 {
+.card .genres h3 {
   font-size: 16px;
   margin: 0;
-  color: #888;
+  color: #FFD500;
 }
 
 .card .buttonContainer {
   margin-top: auto;
 }
 
-.card button {
+.card .buttonContainer .cardLink {
+  text-decoration: none;
+}
+
+.card .buttonContainer .cardButton {
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #FF5F00;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.card button:hover {
-  background-color: #555;
+.card .buttonContainer .cardButton:hover {
+  background-color: #FFD500;
 }

@@ -46,8 +46,8 @@ const getIdVideoGameController = async (source,id) => {
     }
 }
 
-const postVideogameController = async (name,description,platforms,image,relaseDate,rating,genres) => {
-   return await Videogame.create({name,description,platforms,image,relaseDate,rating,genres})
+const postVideogameController = async (name,description,platforms,image,releaseDate,rating,genres) => {
+   return await Videogame.create({name,description,platforms,image,releaseDate,rating,genres})
 }
 
 module.exports = {getIdVideoGameController,getAllVideoGamesController,getQueryVideoGamesController,postVideogameController}

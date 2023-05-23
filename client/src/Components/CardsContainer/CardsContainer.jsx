@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Card } from '../Card/Card';
-import { Pagination } from '../Pagination/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
 import style from './CardsContainer.module.css';
 import { getAllVideoGames } from '../../Redux/actions';
+import { Pagination } from '../Pagination/Pagination';
+import { Card } from '../Card/Card';
 
 export const CardsContainer = () => {
   const dispatch = useDispatch();
@@ -24,12 +24,13 @@ export const CardsContainer = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <img classname={style.loadingImg} src='https://www.gifde.com/gif/otros/decoracion/cargando-loading/cargando-loading-048.gif' alt="Loading..." />;
+    return <div className={style.loadingContainer}>
+      <img className={style.loadingImg} src='https://www.gifde.com/gif/otros/decoracion/cargando-loading/cargando-loading-048.gif' alt="Loading..." />;
+    </div> 
   }
 
-  // Verificar si renderGames tiene elementos antes de renderizar el contenido
   if (!renderGames || renderGames.length === 0) {
-    return <div>No hay juegos disponibles.</div>;
+    return <div className={style.noGames}>No hay juegos disponibles.</div>;
   }
 
   const indexOfLastGame = currentPage * gamesPerPage;
@@ -40,14 +41,14 @@ export const CardsContainer = () => {
 
   return (
     <div className={style.CardsContainer}>
-      <>
-        <Pagination currentPage={currentPage} totalPages={Math.ceil(renderGames.length / gamesPerPage)} handleClick={handleClick} />
-        <div className={style.cards}>
-          {currentGames.map(game => (
-            <Card key={game.id} id={game.id} name={game.name} image={game.image} genres={game.genres} />
-          ))}
-        </div>
-      </>
+      <Pagination currentPage={currentPage} totalPages={Math.ceil(renderGames.length / gamesPerPage)} handleClick={handleClick} />
+      <div className={style.cards}>
+        {currentGames.map(game => (
+          <Card key={game.id} id={game.id} name={game.name} image={game.image} genres={game.genres} />
+        ))}
+      </div>
     </div>
   );
 };
+
+

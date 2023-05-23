@@ -10,7 +10,7 @@ export const Card = ({ image, genres, name, id }) => {
   return (
     <div className={style.card}>
       <div className={style.imageContainer}>
-        <img src={image} alt={name} />
+        <img className={style.cardImg} src={image} alt={name} />
       </div>
       <div className={style.content}>
         <div className={style.name}>
@@ -21,8 +21,8 @@ export const Card = ({ image, genres, name, id }) => {
         </div>
       </div>
       <div className={style.buttonContainer}>
-        <Link to='/detail'>
-          <button onClick={()=> dispatch(getDetailVideoGame(id))}>View Detail</button>
+        <Link to='/detail' className={style.cardLink}>
+          <button className={style.cardButton} onClick={() => dispatch(getDetailVideoGame(id))}>View Detail</button>
         </Link>
       </div>
     </div>
