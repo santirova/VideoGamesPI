@@ -4,7 +4,7 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -71,7 +71,7 @@
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #0079FF;
+    background-color: #FF5F00;
     border: none;
     border-radius: 4px;
     font-size: 16px;
@@ -81,7 +81,7 @@
   }
   
   .submitButton:hover {
-    background-color: #0056B3;
+    background-color: #c94b01;
   }
   
   .submitButton:disabled {
