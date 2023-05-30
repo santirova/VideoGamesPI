@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { getDetailVideoGame } from '../../Redux/actions';
 
 export const Card = ({ image, genres, name, id }) => {
-  console.log(genres);
   const dispatch = useDispatch()
   return (
     <div className={style.card}>

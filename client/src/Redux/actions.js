@@ -25,11 +25,24 @@ export const getDetailVideoGame = (id)=>{
     }
 }
 
+export const orderVideoGames = (games)  =>{
+    return{
+        type:ORDER_GAMES,payload:games
+    }
+}
+
 export const clearDetail = ()=>{
     console.log('clear')
     return {type:CLEAR_DETAIL}
 }
+
+export const activeRender = (value) =>{
+    return {type:ACTIVE_RENDER,payload:value}
+}
+
+export const ACTIVE_RENDER = 'ACTIVE_RENDER'
 export const CLEAR_DETAIL = 'GET_DETAIL'
 export const GET_DETAIL = 'GET_DETAIL'
 export const GET_GENRES = 'GET_GENRES'
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES'
+export const ORDER_GAMES = 'ORDER_GAMES'

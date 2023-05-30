@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import style from './Navbar.module.css';
+import SearchBar from '../SearchBar/SearchBar';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -24,12 +25,7 @@ export const Navbar = () => {
           FORM
         </Link>
       </div>
-      {location.pathname === '/home' && (
-        <div className={style.search}>
-          <input type="search" placeholder="Search" className={style.input} />
-          <button className={style.button}>GO</button>
-        </div>
-      )}
+      {location.pathname === '/home' && <SearchBar/>}
     </nav>
   );
 };

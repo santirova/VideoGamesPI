@@ -1,7 +1,8 @@
-import { GET_GENRES, GET_VIDEOGAMES,GET_DETAIL,CLEAR_DETAIL } from "./actions";
+import { GET_GENRES, GET_VIDEOGAMES,GET_DETAIL,CLEAR_DETAIL,ORDER_GAMES,ACTIVE_RENDER} from "./actions";
 
 const initialState = {
   allVideoGames: [],
+  activeRender:false,
   renderVideoGames: [],
   detailVideoGame: null,
   genres: []
@@ -28,6 +29,16 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         detailVideoGame:null
+      }
+    case ORDER_GAMES:
+      return{
+        ...state,
+        renderVideoGames:action.payload
+      }
+    case ACTIVE_RENDER:
+      return{
+        ...state,
+        activeRender:action.payload
       }
     default:
       return state; // Devolvemos el estado sin modificaciones para casos de acción desconocida

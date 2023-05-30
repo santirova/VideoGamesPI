@@ -1,0 +1,35 @@
+.filterOptions {
+  margin-bottom: 20px;
+}
+
+.filterButton {
+  /* Estilos del botón */
+}
+
+.filterContent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.filterRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.filterLabel {
+  margin-right: 10px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.filterSelect {
+  padding: 5px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+.applyButton {
+  /* Estilos del botón de aplicar */
+}

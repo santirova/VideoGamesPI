@@ -7,7 +7,8 @@ const cleanGames = (games) =>{
             genres:e.genres.map(e=> e.name),
             releaseDate:e.released,
             platforms:e.platforms.map(e => e.platform.name),
-            rating:e.rating
+            rating:e.rating,
+            created:false
         }
     })
 }
