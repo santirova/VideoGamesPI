@@ -73,7 +73,7 @@ export const CardsContainer = () => {
       {active && renderGames.length === 0 && <div>No hay resultados</div>}
       <div className={style.cards}>
         {currentGames.map(game => (
-          <Card key={game.id} id={game.id} name={game.name} image={game.image} genres={game.genres} />
+          <Card key={game.id} id={game.id} name={game.name} image={game.image} genres={game.genres} created ={game.created}/>
         ))}
       </div>
     </div>

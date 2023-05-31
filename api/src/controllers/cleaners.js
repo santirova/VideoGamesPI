@@ -20,6 +20,8 @@ const cleanDetail = (e) =>{
         releaseDate:e.released,
         platforms:e.platforms.map(e => e.platform.name),
         description:e.description_raw,
-        rating:e.rating}
+        rating:e.rating,
+        created:false
+    }
 }
 module.exports = {cleanGames,cleanDetail}

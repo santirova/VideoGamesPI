@@ -19,7 +19,7 @@ const Form = () => {
     platforms: '',
     releaseDate: '',
     rating: '',
-    genres: [],
+    genresIds: [],
   });
 
   const [errors, setErrors] = useState({
@@ -79,22 +79,22 @@ const Form = () => {
     }
   };
 
-  const handleGenreToggle = (genreName) => {
+  const handleGenreToggle = (genresIds) => {
     setFormData((prevData) => {
-      const updatedGenres = [...prevData.genres];
-      if (updatedGenres.includes(genreName)) {
+      const updatedGenres = [...prevData.genresIds];
+      if (updatedGenres.includes(genresIds)) {
         // Género ya seleccionado, lo eliminamos
-        const genreIndex = updatedGenres.indexOf(genreName);
+        const genreIndex = updatedGenres.indexOf(genresIds);
         updatedGenres.splice(genreIndex, 1);
       } else {
         if (updatedGenres.length < 5) {
           // Género no seleccionado y se cumple el límite, lo agregamos
-          updatedGenres.push(genreName);
+          updatedGenres.push(genresIds);
         }
       }
       return {
         ...prevData,
-        genres: updatedGenres,
+        genresIds: updatedGenres,
       };
     });
   };
@@ -110,7 +110,7 @@ const Form = () => {
           platforms: formData.platforms.split(','),
           rating: formData.rating,
           releaseDate: formData.releaseDate,
-          genres: formData.genres,
+          genresIds: formData.genresIds,
         })
         .then((r) => alert(r.data))
         .catch((e) => alert(e));
@@ -121,7 +121,7 @@ const Form = () => {
         platforms: '',
         releaseDate: '',
         rating: '',
-        genres: [],
+        genresIds: [],
       });
     } else {
       alert('Corrige los campos para enviar el formulario');
@@ -198,10 +198,10 @@ const Form = () => {
                 <div className={style.checkboxItem} key={genre.id}>
                   <input
                     type="checkbox"
-                    id={genre.name}
+                    id={genre.id}
                     name={genre.name}
-                    checked={formData.genres.includes(genre.name)}
-                    onChange={() => handleGenreToggle(genre.name)}
+                    checked={formData.genresIds.includes(genre.id)}
+                    onChange={() => handleGenreToggle(genre.id)}
                   />
                   <label
                     htmlFor={genre.name}

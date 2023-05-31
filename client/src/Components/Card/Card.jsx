@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from 'react-redux';
 import { getDetailVideoGame } from '../../Redux/actions';
 
-export const Card = ({ image, genres, name, id }) => {
+export const Card = ({ image, genres, name, id ,created}) => {
+  console.log(created)
+  console.log(genres);
   const dispatch = useDispatch()
+
   return (
     <div className={style.card}>
       <div className={style.imageContainer}>
@@ -16,7 +19,7 @@ export const Card = ({ image, genres, name, id }) => {
           <h2>{name}</h2>
         </div>
         <div className={style.genres}>
-          <h3>Genres: {genres.join(', ')}</h3>
+          <h3>Genres: {created ? genres.map((genre) => genre.name).join(', ') : genres.join(', ')}</h3>
         </div>
       </div>
       <div className={style.buttonContainer}>

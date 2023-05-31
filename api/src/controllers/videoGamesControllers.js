@@ -1,10 +1,12 @@
 const axios = require('axios')
-const {Videogame} = require('../db.js')
+const {Videogame,Genres} = require('../db.js')
 const { cleanGames, cleanDetail } = require('./cleaners')
 const{API_KEY}= process.env
 
 const getAllVideoGamesController = async () => {
-    const dbVideoGames = await Videogame.findAll();
+    const dbVideoGames = await Videogame.findAll({
+        include: [{ model: Genres, as:'genres',attributes: ['name'], through: { attributes: [] } }]
+      });
   
     const pageRequests = [];
     for (let i = 1; i <= 5; i++) {
@@ -34,7 +36,9 @@ const getQueryVideoGamesController = async (query) => {
 
 const getIdVideoGameController = async (source,id) => {
     if (source === "bdd") {
-        const detail = await Videogame.findByPk(id)
+        const detail = await Videogame.findByPk(id,{
+            include: 'genres', // Incluir los géneros asociados al videojuego
+          })
         return detail
     }
     if (source === "api") {
@@ -46,8 +50,9 @@ const getIdVideoGameController = async (source,id) => {
     }
 }
 
-const postVideogameController = async (name,description,platforms,image,releaseDate,rating,genres) => {
-   return await Videogame.create({name,description,platforms,image,releaseDate,rating,genres})
-}
+const postVideogameController = async (name, description, platforms, image, releaseDate, rating, genresIds) => {
+    const videogame = await Videogame.create({ name, description, platforms, image, releaseDate, rating });
+    await videogame.setGenres(genresIds);
+  };
 
 module.exports = {getIdVideoGameController,getAllVideoGamesController,getQueryVideoGamesController,postVideogameController}

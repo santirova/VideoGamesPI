@@ -14,7 +14,7 @@ export const DetailCard = () => {
   }, [dispatch]);
 
   const detail = useSelector(state => state.detailVideoGame);
-
+  console.log(detail);
   if (!detail) {
     return (
       <div className={style.loadingContainer}>
@@ -38,7 +38,7 @@ export const DetailCard = () => {
           <p className={style.detailDescription}>{detail.description}</p>
           <p className={style.detailText}>Relase Date: {detail.releaseDate}</p>
           <p className={style.detailText}>Rating: {detail.rating}</p>
-          <p className={style.detailText}>Genres: {detail.genres.join(', ')}</p>
+          <p className={style.detailText}>Genres: {detail.created  ? detail.genres.map((genre) => genre.name).join(', ') : detail.genres.join(', ')}</p>
         </div>
       </div>
     </div>
