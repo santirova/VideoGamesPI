@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './FilterOptions.module.css';
-import { orderVideoGames } from '../../Redux/actions';
+import { orderVideoGames, setOrder } from '../../Redux/actions';
 
-export const FilterOptions = ({handleOrderFilter}) => {
+export const FilterOptions = ({handleOrderFilter,setOrderBy}) => {
   const dispatch = useDispatch()
   const genres = useSelector(state => state.genres);
   const allGames = useSelector((state) => state.allVideoGames);
-  const renderGames = useSelector((state) => state.renderVideoGames);
+  const active = useSelector(state => state.activeRender)
   const [selectedGenre, setSelectedGenre] = useState('');
   const [selectedOrigin, setSelectedOrigin] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
 
+  useEffect(()=>{
+    if (!active) {
+      setSelectedGenre('')
+      setSelectedOrigin('')
+    }
+  },[active])
   const handleGenreChange = (e) => {
     setSelectedGenre(e.target.value);
   };
@@ -32,32 +38,46 @@ export const FilterOptions = ({handleOrderFilter}) => {
   }
 
   const genreFilter = (genre) =>{
-    const filterGames = allGames.filter(games => games.genres.includes(genre))
+    const filterGames = allGames.filter(games => {
+      if (games.created) {
+        return games.genres.some(obj => obj.name === genre);
+      } else {
+        return games.genres.includes(genre);
+      }
+    })
     dispatch(orderVideoGames(filterGames))
   }
 
-  const doubleFilter = (origin,genre)=>{
+  const doubleFilter = (origin, genre) => {
     console.log('pasando');
-    const firstFilters = allGames.filter(games => games.created === (origin === 'bdd' ? true : false))
-    const secondFilters = firstFilters.filter(games => games.genres.includes(genre))
-    dispatch(orderVideoGames(secondFilters))
+    const firstFilters = allGames.filter(games => games.created === (origin === 'bdd' ? true : false));
+    // console.log(firstFilters)
+    const secondFilters = firstFilters.filter(games => {
+      if (games.created) {
+        return games.genres.some(obj => obj.name === genre);
+      } else {
+        return games.genres.includes(genre);
+      }
+    });
+    // console.log(secondFilters)
+    dispatch(orderVideoGames(secondFilters));
   }
-
+  
   const handleApplyFilters =  () => {
     if(selectedOrigin !== '' && selectedGenre !== ''){
       doubleFilter(selectedOrigin,selectedGenre)
-      return handleOrderFilter()
+      handleOrderFilter()
     }
-    if (selectedOrigin !== '') {
+    else if (selectedOrigin !== '') {
       console.log('solo origen');
       originFilter(selectedOrigin)
-      return handleOrderFilter()
+      handleOrderFilter()
     }
-    if (selectedGenre !== '' ){
+    else if (selectedGenre !== '' ){
       genreFilter(selectedGenre)
-      return handleOrderFilter()
+      handleOrderFilter()
     }
-
+    dispatch(setOrder(''))
   };
 
   const toggleAccordion = () => {
@@ -81,7 +101,7 @@ export const FilterOptions = ({handleOrderFilter}) => {
               onChange={handleGenreChange}
               className={style.filterSelect}
             >
-              <option value="None" > None</option>
+              <option value="" disabled hidden > Select </option>
               {genres.map(genre => (
                 <option key={genre.id} value={genre.name}>
                   {genre.name}

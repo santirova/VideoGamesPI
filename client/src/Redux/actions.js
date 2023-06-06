@@ -40,6 +40,11 @@ export const activeRender = (value) =>{
     return {type:ACTIVE_RENDER,payload:value}
 }
 
+export const setOrder = (value) =>{
+    return{type:SET_ORDER,payload:value}
+}
+
+export const SET_ORDER = 'SET_ORDER'
 export const ACTIVE_RENDER = 'ACTIVE_RENDER'
 export const CLEAR_DETAIL = 'GET_DETAIL'
 export const GET_DETAIL = 'GET_DETAIL'

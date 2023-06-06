@@ -15,17 +15,15 @@ export const CardsContainer = () => {
   const [isLoading, setIsLoading] = useState(renderGames.length !== 0 ? false : true);
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPage = 15;
-  const [isFilteredOrSorted, setIsFilteredOrSorted] = useState(renderGames.length !== 0 ? true : false);
+ 
 
   useEffect(() => { 
-    console.log(active)
     dispatch(getGenres());
     dispatch(getAllVideoGames())
       .then(() => {
         setIsLoading(false);
       })
-      .catch(error => {
-        console.log(error);
+      .catch(() => {
         setIsLoading(false);
       });
   }, [dispatch]);
@@ -56,18 +54,19 @@ export const CardsContainer = () => {
     dispatch(orderVideoGames(allGames)); // Llama a la acción resetFilters para eliminar los filtros
     dispatch(activeRender(false))
     setCurrentPage(1);
+    
   };
 
   return (
     <div className={style.cardsContainer}>
-      <Pagination currentPage={currentPage} totalPages={totalPages} handleClick={handleClick} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} handleClick={handleClick} />
       <div className={style.filterAndOrderContainer}>
-        <FilterOptions handleOrderFilter={handleOrderFilter} />
-        <OrderButton handleOrderFilter={handleOrderFilter} />
+        <FilterOptions handleOrderFilter={handleOrderFilter}  />
+        <OrderButton handleOrderFilter={handleOrderFilter} /> 
       </div>
       {active && (
         <button className={style.resetFiltersButton} onClick={handleResetFilters}>
-          Eliminar filtros
+          Reset
         </button>
       )} 
       {active && renderGames.length === 0 && <div>No hay resultados</div>}
@@ -79,3 +78,4 @@ export const CardsContainer = () => {
     </div>
   );
 };
+ 

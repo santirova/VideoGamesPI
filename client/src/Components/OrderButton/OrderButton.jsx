@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderVideoGames } from '../../Redux/actions';
+import { orderVideoGames, setOrder } from '../../Redux/actions';
+import style from './OrderButton.module.css';
 
-export const OrderButton = ({ handleOrderFilter }) => {
+export const OrderButton = ({ handleOrderFilter}) => {
+  const active = useSelector(state => state.activeRender)
   const allGames = useSelector((state) => state.allVideoGames);
   const renderGames = useSelector((state) => state.renderVideoGames);
+  const orderBy = useSelector(state => state.orderBy)
   const dispatch = useDispatch();
-  const [orderBy, setOrderBy] = useState('');
+  // const [orderBy, setOrderBy] = useState('');
+
+
+  useEffect(()=>{
+    if (!active) {
+      dispatch(setOrder(''))
+    }
+  },[active])
 
   const handleSelectChange = (e) => {
     const value = e.target.value;
-    setOrderBy(value);
+    dispatch(setOrder(value));
     orderGamesHandler(value);
-    handleOrderFilter()
+    handleOrderFilter();
   };
 
   const orderGamesHandler = (value) => {
     let sortedGames = [];
 
-    if (renderGames.length !== 0) {
+    if (active) {
       sortedGames = [...renderGames];
     } else {
       sortedGames = [...allGames];
@@ -45,11 +55,20 @@ export const OrderButton = ({ handleOrderFilter }) => {
   };
 
   return (
-    <div>
-      <label htmlFor="sortingOptions">Ordenar por:</label>
-      <select id="sortingOptions" value={orderBy} onChange={handleSelectChange}>
-      <option value="" disabled hidden>Seleccione una opción</option>
-        <option value="A-Z">Name (A-Z)</option>
+    <div className={style.orderButtonContainer}>
+      <label htmlFor="sortingOptions" className={style.orderLabel}>
+        Sort by:
+      </label>
+      <select
+        id="sortingOptions"
+        value={orderBy}
+        onChange={handleSelectChange}
+        className={style.orderSelect}
+      >
+        <option value="" disabled hidden>
+          Seleccione una opción
+        </option>
+        <option className={style.optionAZ} value="A-Z">Name (A-Z)</option>
         <option value="Z-A">Name (Z-A)</option>
         <option value="rating-asc">Rating (Ascendente)</option>
         <option value="rating-desc">Rating (Descendente)</option>

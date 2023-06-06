@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './Form.module.css';
 import { getGenres } from '../../Redux/actions';
 import axios from 'axios';
+import { validateName, validateRating, validateDescription } from './validations';
 
 const Form = () => {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     dispatch(getGenres());
@@ -28,67 +30,23 @@ const Form = () => {
     description: '',
   });
 
-  const validateRating = (form) => {
-    if (form.rating > 5 || form.rating < 1) {
-      setErrors({ ...errors, rating: 'El número debe estar entre 1 y 5' });
-    } else {
-      setErrors({ ...errors, rating: '' });
-    }
-  };
+  useEffect(() => {
+    const isFormComplete = Object.values(formData).every(
+      (value) => String(value).trim() !== ''
+    );
+    const hasErrors = Object.values(errors).every((error) => error === '');
 
-  const validateDescription = (form) => {
-    const regex = /^[a-zA-Z0-9\s,:.'"Ññ\-()]+$/;
-    if (regex.test(form.description) && form.description.length <= 400) {
-      setErrors({ ...errors, description: '' });
-    } else {
-      setErrors({
-        ...errors,
-        description: 'La descripción no puede tener caracteres especiales y debe tener hasta 400 caracteres',
-      });
-    }
-  };
-
-  const validateName = (form) => {
-    const regex = /^[A-Za-z0-9\s:,''.Ññ]{2,40}$/;
-    if (regex.test(form.name)) {
-      setErrors({ ...errors, name: '' });
-    } else {
-      setErrors({
-        ...errors,
-        name: 'El nombre debe tener entre 2 y 40 caracteres y no admite caracteres especiales',
-      });
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-    switch (name) {
-      case 'name':
-        validateName({ ...formData, [name]: value });
-        break;
-      case 'rating':
-        validateRating({ ...formData, [name]: value });
-        break;
-      case 'description':
-        validateDescription({ ...formData, [name]: value });
-        break;
-      default:
-        break;
-    }
-  };
+    setIsFormValid(isFormComplete && hasErrors);
+  }, [formData, errors]);
 
   const handleGenreToggle = (genresIds) => {
     setFormData((prevData) => {
       const updatedGenres = [...prevData.genresIds];
       if (updatedGenres.includes(genresIds)) {
-        // Género ya seleccionado, lo eliminamos
         const genreIndex = updatedGenres.indexOf(genresIds);
         updatedGenres.splice(genreIndex, 1);
       } else {
         if (updatedGenres.length < 5) {
-          // Género no seleccionado y se cumple el límite, lo agregamos
           updatedGenres.push(genresIds);
         }
       }
@@ -101,9 +59,9 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (errors.name === '' && errors.description === '' && errors.rating === '') {
-      await axios
-        .post('http://localhost:3001/videogames', {
+    if (isFormValid) {
+      try {
+        await axios.post('http://localhost:3001/videogames', {
           name: formData.name,
           image: formData.image,
           description: formData.description,
@@ -112,19 +70,46 @@ const Form = () => {
           releaseDate: formData.releaseDate,
           genresIds: formData.genresIds,
         })
-        .then((r) => alert(r.data))
-        .catch((e) => alert(e));
-      setFormData({
-        name: '',
-        image: '',
-        description: '',
-        platforms: '',
-        releaseDate: '',
-        rating: '',
-        genresIds: [],
-      });
-    } else {
-      alert('Corrige los campos para enviar el formulario');
+        alert('Videojuego creado exitosamente');
+        setFormData({
+          name: '',
+          image: '',
+          description: '',
+          platforms: '',
+          releaseDate: '',
+          rating: '',
+          genresIds: [],
+        });
+        setErrors({
+          name: '',
+          rating: '',
+          description: '',
+        });
+      } catch (error) {
+        alert(error.message);
+      }
+    } 
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+
+    switch (name) {
+      case 'name':
+        validateName(value, setErrors);
+        break;
+      case 'rating':
+        validateRating(value, setErrors);
+        break;
+      case 'description':
+        validateDescription(value, setErrors);
+        break;
+      default:
+        break;
     }
   };
 
@@ -225,7 +210,7 @@ const Form = () => {
           />
           {errors.rating && <span className={style.error}>{errors.rating}</span>}
         </div>
-        <button type="submit" className={style.submitButton}>
+        <button type="submit" className={style.submitButton} disabled={!isFormValid}>
           Crear videojuego
         </button>
       </form>

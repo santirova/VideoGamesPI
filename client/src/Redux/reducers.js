@@ -1,11 +1,12 @@
-import { GET_GENRES, GET_VIDEOGAMES,GET_DETAIL,CLEAR_DETAIL,ORDER_GAMES,ACTIVE_RENDER} from "./actions";
+import {SET_ORDER, GET_GENRES, GET_VIDEOGAMES,GET_DETAIL,CLEAR_DETAIL,ORDER_GAMES,ACTIVE_RENDER} from "./actions";
 
 const initialState = {
   allVideoGames: [],
   activeRender:false,
   renderVideoGames: [],
   detailVideoGame: null,
-  genres: []
+  genres: [],
+  orderBy:'',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,7 +20,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allVideoGames: action.payload
-      };
+      }; 
     case GET_DETAIL:
       return{
         ...state,
@@ -39,6 +40,11 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         activeRender:action.payload
+      }
+      case SET_ORDER:
+      return{
+        ...state,
+        orderBy:action.payload
       }
     default:
       return state; // Devolvemos el estado sin modificaciones para casos de acción desconocida
