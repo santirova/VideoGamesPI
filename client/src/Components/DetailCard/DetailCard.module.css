@@ -15,7 +15,7 @@
 .detailTitle {
   font-size: 24px;
   font-weight: bold;
-  color: #0C112B; /* Azul oscuro */
+  color: #0C112B; 
 }
 
 .detailContent {
@@ -40,7 +40,7 @@
 .detailSubtitle {
   font-size: 18px;
   font-weight: bold;
-  color: #FF5F00; /* Naranja */
+  color: #FF5F00; 
   margin-bottom: 10px;
 }
 

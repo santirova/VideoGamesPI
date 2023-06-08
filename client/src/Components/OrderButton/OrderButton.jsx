@@ -9,7 +9,6 @@ export const OrderButton = ({ handleOrderFilter}) => {
   const renderGames = useSelector((state) => state.renderVideoGames);
   const orderBy = useSelector(state => state.orderBy)
   const dispatch = useDispatch();
-  // const [orderBy, setOrderBy] = useState('');
 
 
   useEffect(()=>{
@@ -70,8 +69,8 @@ export const OrderButton = ({ handleOrderFilter}) => {
         </option>
         <option className={style.optionAZ} value="A-Z">Name (A-Z)</option>
         <option value="Z-A">Name (Z-A)</option>
-        <option value="rating-asc">Rating (Ascendente)</option>
-        <option value="rating-desc">Rating (Descendente)</option>
+        <option value="rating-asc">Rating (1-5)</option>
+        <option value="rating-desc">Rating (5-1)</option>
       </select>
     </div>
   );

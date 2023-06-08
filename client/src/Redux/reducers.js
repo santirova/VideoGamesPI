@@ -47,7 +47,7 @@ const rootReducer = (state = initialState, action) => {
         orderBy:action.payload
       }
     default:
-      return state; // Devolvemos el estado sin modificaciones para casos de acción desconocida
+      return state;
   }
 };
 

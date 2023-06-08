@@ -5,7 +5,24 @@
   padding: 20px;
   background-color: #0C112B;
   color: #fff;
+  min-height: 100vh;
 }
+
+.noGames {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #fff;
+  text-align: center; 
+  flex-grow: 1; 
+}
+.cardsContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .loadingContainer {
   display: flex;
@@ -33,11 +50,28 @@
 
 .filterAndOrderContainer {
   display: flex;
-  justify-content: space-between; /* Distribuye los elementos a los extremos */
-  width: 100%; /* Opcional: Asegura que ocupe todo el ancho disponible */
-  margin-bottom: 20px; /* Opcional: Agrega margen inferior para separarlo del contenido */
+  justify-content: space-between; 
+  width: 100%;
+  margin-bottom: 20px; 
 }
 
 .orderIndicator{
   color: #fff;
+}
+
+.resetFiltersButton{
+  padding: 10px 10px;
+  background-color: #FF5F00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.resetFiltersButton:hover{
+  padding: 10px 10px;
+  background-color: #FFF;
+  color: #FF5F00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

@@ -51,7 +51,6 @@ export const FilterOptions = ({handleOrderFilter,setOrderBy}) => {
   const doubleFilter = (origin, genre) => {
     console.log('pasando');
     const firstFilters = allGames.filter(games => games.created === (origin === 'bdd' ? true : false));
-    // console.log(firstFilters)
     const secondFilters = firstFilters.filter(games => {
       if (games.created) {
         return games.genres.some(obj => obj.name === genre);
@@ -59,7 +58,6 @@ export const FilterOptions = ({handleOrderFilter,setOrderBy}) => {
         return games.genres.includes(genre);
       }
     });
-    // console.log(secondFilters)
     dispatch(orderVideoGames(secondFilters));
   }
   
@@ -124,7 +122,7 @@ export const FilterOptions = ({handleOrderFilter,setOrderBy}) => {
               <option value="bdd">Database</option>
             </select>
           </div>
-          <button className={style.applyButton} onClick={handleApplyFilters}>
+          <button className={style.applyButton} onClick={handleApplyFilters} disabled={selectedGenre === '' && selectedOrigin === ''}>
             Apply Filters
           </button>
         </div>

@@ -1,3 +1,6 @@
+
+
+
 export const validateName = (value, setErrors) => {
     const regex = /^[A-Za-z0-9\s:,''.Ññ]{2,40}$/;
     if (regex.test(value)) {
@@ -8,7 +11,7 @@ export const validateName = (value, setErrors) => {
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        name: 'El nombre debe tener entre 2 y 40 caracteres y no admite caracteres especiales',
+        name: 'The name must be between 2 and 40 characters and does not support special characters',
       }));
     }
   };
@@ -23,7 +26,7 @@ export const validateName = (value, setErrors) => {
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        rating: 'El número debe estar entre 1 y 5',
+        rating: 'The number must be between 1 and 5',
       }));
     }
   };
@@ -38,7 +41,7 @@ export const validateName = (value, setErrors) => {
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        description: 'La descripción no puede tener caracteres especiales (excepto acentos) y debe tener hasta 400 caracteres',
+        description: 'The description cannot have special characters (except accents) and must be up to 400 characters',
       }));
     }
   };

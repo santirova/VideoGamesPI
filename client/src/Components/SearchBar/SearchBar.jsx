@@ -32,7 +32,9 @@ const SearchBar = () => {
     return (
         <div className={style.search}>
             <input onChange={handleChange} type="search" placeholder="Search" className={style.input} value={search} />
-            <button onClick={()=>handleSubmit()} className={style.button}>GO</button>
+            <button onClick={()=>handleSubmit()} className={style.button}>
+              <img src='https://www.pngall.com/wp-content/uploads/8/Magnifying-Glass-Search-PNG-Image.png' alt="GO" />
+            </button>
         </div>
   )
 }

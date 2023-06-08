@@ -8,6 +8,7 @@ import { validateName, validateRating, validateDescription } from './validations
 const Form = () => {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
+  const allGames = useSelector(state => state.allVideoGames)
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
@@ -59,7 +60,9 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isFormValid) {
+    const equalities = allGames.filter(games => games.name.toLowerCase() === formData.name.toLowerCase())
+    console.log(equalities)
+    if (isFormValid && equalities.length === 0) {
       try {
         await axios.post('http://localhost:3001/videogames', {
           name: formData.name,
@@ -70,7 +73,7 @@ const Form = () => {
           releaseDate: formData.releaseDate,
           genresIds: formData.genresIds,
         })
-        alert('Videojuego creado exitosamente');
+        alert('Video game created successfully');
         setFormData({
           name: '',
           image: '',
@@ -88,6 +91,9 @@ const Form = () => {
       } catch (error) {
         alert(error.message);
       }
+    }
+    else if(equalities.length !== 0){
+      alert('There is already a video game with the same name')
     } 
   };
 
@@ -115,10 +121,10 @@ const Form = () => {
 
   return (
     <div className={style.formContainer}>
-      <h2 className={style.formTitle}>Agregar nuevo videojuego</h2>
+      <h2 className={style.formTitle}>Add new game</h2>
       <form onSubmit={handleSubmit}>
         <div className={style.formGroup}>
-          <label htmlFor="name">Nombre:</label>
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
             id="name"
@@ -130,7 +136,7 @@ const Form = () => {
           {errors.name && <span className={style.error}>{errors.name}</span>}
         </div>
         <div className={style.formGroup}>
-          <label htmlFor="image">Imagen:</label>
+          <label htmlFor="image">Image:</label>
           <input
             type="text"
             id="image"
@@ -141,7 +147,7 @@ const Form = () => {
           />
         </div>
         <div className={style.formGroup}>
-          <label htmlFor="description">Descripción:</label>
+          <label htmlFor="description">Description:</label>
           <textarea
             id="description"
             name="description"
@@ -154,7 +160,7 @@ const Form = () => {
           )}
         </div>
         <div className={style.formGroup}>
-          <label htmlFor="platforms">Plataformas:</label>
+          <label htmlFor="platforms">Platforms:</label>
           <input
             type="text"
             id="platforms"
@@ -165,7 +171,7 @@ const Form = () => {
           />
         </div>
         <div className={style.formGroup}>
-          <label htmlFor="releaseDate">Fecha de lanzamiento:</label>
+          <label htmlFor="releaseDate">Relased date:</label>
           <input
             type="date"
             id="releaseDate"
@@ -176,7 +182,7 @@ const Form = () => {
           />
         </div>
         <div className={style.formGroup}>
-          <label>Géneros:</label>
+          <label>Genres:</label>
           <div className={style.checkboxGroup}>
             {genres.length !== 0 &&
               genres.map((genre) => (
@@ -211,7 +217,7 @@ const Form = () => {
           {errors.rating && <span className={style.error}>{errors.rating}</span>}
         </div>
         <button type="submit" className={style.submitButton} disabled={!isFormValid}>
-          Crear videojuego
+          Create Video Game
         </button>
       </form>
     </div>

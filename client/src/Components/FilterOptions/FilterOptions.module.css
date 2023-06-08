@@ -3,7 +3,12 @@
 }
 
 .filterButton {
-  /* Estilos del botón */
+  background-color: #FFF;
+  color: #FF5F00;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 6px 12px;
 }
 
 .filterContent {
@@ -31,5 +36,15 @@
 }
 
 .applyButton {
-  /* Estilos del botón de aplicar */
+  padding: 6px 12px;
+  background-color: #FF5F00;
+  color: #FFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.applyButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

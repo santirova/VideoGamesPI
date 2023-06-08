@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './CardsContainer.module.css';
-import { activeRender, getAllVideoGames, getGenres, orderVideoGames } from '../../Redux/actions'; // Importa la acción resetFilters
+import { activeRender, getAllVideoGames, getGenres, orderVideoGames } from '../../Redux/actions'; 
 import { Pagination } from '../Pagination/Pagination';
 import { Card } from '../Card/Card';
 import { OrderButton } from '../OrderButton/OrderButton';
@@ -12,7 +12,7 @@ export const CardsContainer = () => {
   const allGames = useSelector(state => state.allVideoGames);
   const renderGames = useSelector(state => state.renderVideoGames);
   const active = useSelector(state => state.activeRender);
-  const [isLoading, setIsLoading] = useState(renderGames.length !== 0 ? false : true);
+  const [isLoading, setIsLoading] = useState(allGames.length !== 0 || renderGames.length !== 0 ? false : true);
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPage = 15;
  
@@ -51,7 +51,7 @@ export const CardsContainer = () => {
   };
 
   const handleResetFilters = () => {
-    dispatch(orderVideoGames(allGames)); // Llama a la acción resetFilters para eliminar los filtros
+    dispatch(orderVideoGames([])); 
     dispatch(activeRender(false))
     setCurrentPage(1);
     
@@ -59,23 +59,31 @@ export const CardsContainer = () => {
 
   return (
     <div className={style.cardsContainer}>
-        <Pagination currentPage={currentPage} totalPages={totalPages} handleClick={handleClick} />
+      <Pagination currentPage={currentPage} totalPages={totalPages} handleClick={handleClick} />
       <div className={style.filterAndOrderContainer}>
-        <FilterOptions handleOrderFilter={handleOrderFilter}  />
-        <OrderButton handleOrderFilter={handleOrderFilter} /> 
+        <FilterOptions handleOrderFilter={handleOrderFilter} />
+        <OrderButton handleOrderFilter={handleOrderFilter} />
       </div>
       {active && (
         <button className={style.resetFiltersButton} onClick={handleResetFilters}>
           Reset
         </button>
-      )} 
-      {active && renderGames.length === 0 && <div>No hay resultados</div>}
-      <div className={style.cards}>
-        {currentGames.map(game => (
-          <Card key={game.id} id={game.id} name={game.name} image={game.image} genres={game.genres} created ={game.created}/>
-        ))}
-      </div>
+      )}
+      {active && renderGames.length === 0 ? (
+        <div className={style.cardsContent}>
+          <div className={style.noGames}>No results</div>
+        </div>
+      ) : (
+        <div className={style.cardsContent}>
+          <div className={style.cards}>
+            {currentGames.map(game => (
+              <Card key={game.id} id={game.id} name={game.name} image={game.image} genres={game.genres} created={game.created} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
+  
 };
  
