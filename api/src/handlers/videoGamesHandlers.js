@@ -35,6 +35,6 @@ const postVideoGames = async (req,res) =>{
     } catch (error) {
         res.status(400).send({error: error.message})
     }
-}
+}  
 
 module.exports = {getVideoGameById,getVideoGames,postVideoGames}
