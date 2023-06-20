@@ -1,4 +1,4 @@
-import {SET_ORDER, GET_GENRES, GET_VIDEOGAMES,GET_DETAIL,CLEAR_DETAIL,ORDER_GAMES,ACTIVE_RENDER} from "./actions";
+import {SET_ORDER, GET_GENRES, GET_VIDEOGAMES,GET_DETAIL,CLEAR_DETAIL,ORDER_GAMES,ACTIVE_RENDER,CHANGE_PAGE} from "./actions";
 
 const initialState = {
   allVideoGames: [],
@@ -7,6 +7,7 @@ const initialState = {
   detailVideoGame: null,
   genres: [],
   orderBy:'',
+  currentPage:1,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,6 +47,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         orderBy:action.payload
       }
+      case CHANGE_PAGE:
+        return{
+          ...state,
+          currentPage:action.payload
+        }
     default:
       return state;
   }
