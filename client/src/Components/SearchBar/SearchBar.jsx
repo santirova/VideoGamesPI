@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import style from './SearchBar.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeRender, orderVideoGames, setOrder } from '../../Redux/actions'
+import { activeRender, changePage, orderVideoGames, setOrder } from '../../Redux/actions'
 
 const SearchBar = () => {
     const [search,setSearch] = useState('')
@@ -26,6 +26,7 @@ const SearchBar = () => {
         dispatch(activeRender(true))
         dispatch(orderVideoGames(results))
         dispatch(setOrder(''))
+        dispatch(changePage(1))
         
     }
 

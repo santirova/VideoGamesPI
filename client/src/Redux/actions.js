@@ -2,14 +2,14 @@ import axios from 'axios'
 
 export const getGenres = () =>{
     return async function (dispatch) {
-        const genres = await axios.get('http://localhost:3001/genres')
+        const genres = await axios.get('/genres')
             .then(r => r.data)
         dispatch({type:GET_GENRES,payload:genres})
     }
 }
 export const getAllVideoGames = () =>{
     return async function (dispatch) {
-        const videoGames = await axios.get('http://localhost:3001/videogames')
+        const videoGames = await axios.get('/videogames')
             .then(r => r.data)
         dispatch({type:GET_VIDEOGAMES,payload:videoGames})
     }
@@ -17,11 +17,16 @@ export const getAllVideoGames = () =>{
 
 export const getDetailVideoGame = (id)=>{
     return async function (dispatch){
-        const detailVideoGame = await axios.get(`http://localhost:3001/videogames/${id}`)
+        const detailVideoGame = await axios.get(`/videogames/${id}`)
         .then(r => r.data)
         console.log(detailVideoGame)
         dispatch({type:GET_DETAIL,payload:detailVideoGame})
 
+    }
+}
+export const changePage = (page) =>{
+    return {
+        type:CHANGE_PAGE,payload:page
     }
 }
 
@@ -44,6 +49,8 @@ export const setOrder = (value) =>{
     return{type:SET_ORDER,payload:value}
 }
 
+
+export const CHANGE_PAGE = 'CHANGE_PAGE'
 export const SET_ORDER = 'SET_ORDER'
 export const ACTIVE_RENDER = 'ACTIVE_RENDER'
 export const CLEAR_DETAIL = 'GET_DETAIL'

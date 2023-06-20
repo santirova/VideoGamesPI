@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from 'react-redux';
 import { getDetailVideoGame } from '../../Redux/actions';
 
-export const Card = ({ image, genres, name, id ,created}) => {
+export const Card = ({ image, genres, name, id ,created, rating}) => {
   console.log(created)
   console.log(genres);
   const dispatch = useDispatch()
@@ -19,6 +19,7 @@ export const Card = ({ image, genres, name, id ,created}) => {
           <h2>{name}</h2>
         </div>
         <div className={style.genres}>
+          <p>{rating}</p>
           <h3>Genres: {created ? genres.map((genre) => genre.name).join(', ') : genres.join(', ')}</h3>
         </div>
       </div>
