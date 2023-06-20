@@ -64,7 +64,7 @@ const Form = () => {
     console.log(equalities)
     if (isFormValid && equalities.length === 0) {
       try {
-        await axios.post('/videogames', {
+        await axios.post('https://videogamespi-production-dbbd.up.railway.app/videogames', {
           name: formData.name,
           image: formData.image,
           description: formData.description,
