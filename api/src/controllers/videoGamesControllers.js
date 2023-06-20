@@ -50,20 +50,20 @@ const getIdVideoGameController = async (source,id) => {
     }
 }
 
+ const postVideogameController = async (name, description, platforms, image, releaseDate, rating, genresIds) => {
+   const videogame = await Videogame.create({ name, description, platforms, image, releaseDate, rating });
+    await videogame.setGenres(genresIds);
+ };
 // const postVideogameController = async (name, description, platforms, image, releaseDate, rating, genresIds) => {
-//     const videogame = await Videogame.create({ name, description, platforms, image, releaseDate, rating });
-//     await videogame.setGenres(genresIds);
-//   };
-const postVideogameController = async (name, description, platforms, image, releaseDate, rating, genresIds) => {
-  return sequelize.transaction(async (transaction) => {
-    const videogame = await Videogame.create(
-      { name, description, platforms, image, releaseDate, rating },
-      { transaction }
-    );
-    await videogame.setGenres(genresIds, { transaction });
-    return videogame;
-  })
-};
+//   return sequelize.transaction(async (transaction) => {
+//     const videogame = await Videogame.create(
+//       { name, description, platforms, image, releaseDate, rating },
+//       { transaction }
+//     );
+//     await videogame.setGenres(genresIds, { transaction });
+//     return videogame;
+//   })
+// };
 
 
 module.exports = {getIdVideoGameController,getAllVideoGamesController,getQueryVideoGamesController,postVideogameController}
