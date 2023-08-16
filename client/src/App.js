@@ -5,7 +5,9 @@ import DetailPage from './views/DetailPage/DetailPage';
 import FormPage from './views/FormPage/FormPage';
 import { Navbar } from './Components/Navbar/Navbar';  
 import axios from 'axios';
-axios.defaults.baseURL = 'https://videogamespi-production-dbbd.up.railway.app/';
+
+
+axios.defaults.baseURL = process.env.BASE_URL || "http://localhost:3001";
 
 function App() {
   const location = useLocation()
