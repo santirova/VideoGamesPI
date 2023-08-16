@@ -8,7 +8,7 @@ import axios from 'axios';
 const {BASE_URL} = process.env
 
 
-axios.defaults.baseURL =BASE_URL || "http://localhost:3001";
+axios.defaults.baseURL = BASE_URL || "http://localhost:3001";
 
 function App() {
   const location = useLocation()
