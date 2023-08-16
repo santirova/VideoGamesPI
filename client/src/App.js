@@ -5,13 +5,14 @@ import DetailPage from './views/DetailPage/DetailPage';
 import FormPage from './views/FormPage/FormPage';
 import { Navbar } from './Components/Navbar/Navbar';  
 import axios from 'axios';
-const {BASE_URL} = process.env
+const {REACT_APP_BASE_URL} = process.env
 
 
-axios.defaults.baseURL = BASE_URL || "http://localhost:3001";
+axios.defaults.baseURL = REACT_APP_BASE_URL 
 
 function App() {
   const location = useLocation()
+  console.log(REACT_APP_BASE_URL);
   return (
     <div>
       {location.pathname !== '/' && <Navbar/>}
