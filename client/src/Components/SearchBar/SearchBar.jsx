@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react'
 import style from './SearchBar.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { activeRender, changePage, orderVideoGames, setOrder } from '../../Redux/actions'
+import SearchIcon from '@material-ui/icons/Search';
 
 const SearchBar = () => {
     const [search,setSearch] = useState('')
@@ -34,7 +35,7 @@ const SearchBar = () => {
         <div className={style.search}>
             <input onChange={handleChange} type="search" placeholder="Search" className={style.input} value={search} />
             <button onClick={()=>handleSubmit()} className={style.button}>
-              <img src='https://www.pngall.com/wp-content/uploads/8/Magnifying-Glass-Search-PNG-Image.png' alt="GO" />
+            <SearchIcon fontSize="small"/>
             </button>
         </div>
   )
