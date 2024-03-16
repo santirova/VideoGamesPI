@@ -1,0 +1,23 @@
+.loaderContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #165063;
+}
+@keyframes spin {
+    0% {
+      transform: rotate(0deg); /* Empieza desde 0 grados */
+    }
+    100% {
+      transform: rotate(360deg); /* Termina en 360 grados (una vuelta completa) */
+    }
+  }
+  
+  .loader {
+    width: 8rem; /* Ancho del loader */
+    height: 8rem; /* Altura del loader */
+    animation: spin 1s linear infinite; /* Aplica la animación de rotación */
+  }
+  

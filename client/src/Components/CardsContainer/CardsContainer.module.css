@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #0C112B;
+  background-color: #165063;
   color: #fff;
   min-height: 100vh;
 }
@@ -11,7 +11,7 @@
 .noGames {
   margin-top: 20px;
   font-size: 18px;
-  color: #fff;
+  color: #ecf1f2;
   text-align: center; 
   flex-grow: 1; 
 }
@@ -38,7 +38,7 @@
 .noGames {
   margin-top: 20px;
   font-size: 18px;
-  color: #fff;
+  color: #ecf1f2;
 }
 
 .cards {
@@ -50,27 +50,30 @@
 
 .filterAndOrderContainer {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px; 
+  height: 20px;
+  margin-bottom: 20px;
+  position: relative; /* Agregar posición relativa */
+  margin:10px;
 }
 
 .orderIndicator{
-  color: #fff;
+  color: #ecf1f2;
 }
 
 .resetFiltersButton{
   padding: 10px 10px;
-  background-color: #FF5F00;
-  color: #fff;
+  background-color: #05bbd5;
+  color: #ecf1f2;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 .resetFiltersButton:hover{
   padding: 10px 10px;
-  background-color: #FFF;
-  color: #FF5F00;
+  background-color: #0795b3;
+  color:#ecf1f2 ;
   border: none;
   border-radius: 5px;
   cursor: pointer;

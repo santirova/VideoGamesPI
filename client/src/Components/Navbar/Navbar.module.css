@@ -4,13 +4,24 @@
   align-items: center;
   padding: 10px 20px;
   background-color: #041b23;
-  color: #FFF;
+  color: #ecf1f2;
   border-bottom: 2px solid #05bbd5; /* Cambio de color de la línea inferior */
+}
+.logoContainer {
+  display: flex;
+  align-items: center; /* Alinea verticalmente */
 }
 
 .logo {
-  font-size: 24px;
+  width: 40px; /* Ajusta el tamaño del logo según sea necesario */
+  height: auto; /* Mantiene la proporción */
+  margin-right: 10px; /* Ajusta el margen entre el logo y el título */
+}
+
+.title {
   font-family: "Bowlby One", sans-serif;
+  font-size: 24px; /* Ajusta el tamaño del título según sea necesario */
+  margin: 0; /* Elimina el margen para evitar espacios adicionales */
 }
 
 .links {
@@ -21,7 +32,7 @@
   font-family: "Bowlby One", sans-serif;
   margin-right: 20px;
   font-size: 18px;
-  color: #FFF;
+  color: #ecf1f2;
   text-decoration: none;
 }
 
@@ -45,7 +56,7 @@
 .button {
   padding: 6px 12px;
   background-color: #05bbd5; /* Cambio de color del botón */
-  color: #FFF;
+  color: #ecf1f2;
   border: none;
   border-radius: 4px;
   cursor: pointer;

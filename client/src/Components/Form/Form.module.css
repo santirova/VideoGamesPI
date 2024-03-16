@@ -5,16 +5,17 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: #ecf1f2;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
   
   .formTitle {
     margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #0C112B;
+    font-size: 2rem;
+    font-family: "Bowlby One", sans-serif;
+    font-weight:lighter;
+    color: #041b23;
   }
   
   .formGroup {
@@ -25,7 +26,7 @@
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #0C112B;
+    color: #041b23;
   }
   
   input[type="text"],
@@ -36,7 +37,7 @@
     border: 1px solid #cccccc;
     border-radius: 4px;
     font-size: 14px;
-    color: #0C112B;
+    color: #041b23;
   }
   
   textarea {
@@ -47,7 +48,7 @@
     display: block;
     margin-top: 4px;
     font-size: 12px;
-    color: #FF5F00;
+    color: #05bbd5;
   }
   
   .checkboxGroup {
@@ -65,24 +66,24 @@
   .checkboxLabel {
     margin-left: 4px;
     font-size: 14px;
-    color: #0C112B;
+    color: #041b23;
   }
   
   .submitButton {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #FF5F00;
+    background-color: #05bbd5;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     font-weight: bold;
-    color: #ffffff;
+    color: #ecf1f2;
     cursor: pointer;
   }
   
   .submitButton:hover {
-    background-color: #c94b01;
+    background-color: #0795b3;
   }
   
   .submitButton:disabled {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { clearDetail } from '../../Redux/actions';
 import style from './DetailCard.module.css';
+import Loader from '../Loader/Loader';
 
 export const DetailCard = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,7 @@ export const DetailCard = () => {
   console.log(detail);
   if (!detail) {
     return (
-      <div className={style.loadingContainer}>
-        <h1 className={style.loading}>LOADING...</h1>
-      </div>
+      <Loader bgColor='#ecf1f2'/>
     )
   }
 

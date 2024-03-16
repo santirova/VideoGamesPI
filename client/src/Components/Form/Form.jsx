@@ -121,7 +121,7 @@ const Form = () => {
 
   return (
     <div className={style.formContainer}>
-      <h2 className={style.formTitle}>Add new game</h2>
+      <h2 className={style.formTitle}>ADD NEW GAME</h2>
       <form onSubmit={handleSubmit}>
         <div className={style.formGroup}>
           <label htmlFor="name">Name:</label>

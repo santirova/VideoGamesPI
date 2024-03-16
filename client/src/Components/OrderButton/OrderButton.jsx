@@ -55,9 +55,6 @@ export const OrderButton = ({ handleOrderFilter}) => {
 
   return (
     <div className={style.orderButtonContainer}>
-      <label htmlFor="sortingOptions" className={style.orderLabel}>
-        Sort by:
-      </label>
       <select
         id="sortingOptions"
         value={orderBy}
@@ -65,7 +62,7 @@ export const OrderButton = ({ handleOrderFilter}) => {
         className={style.orderSelect}
       >
         <option value="" disabled hidden>
-          Seleccione una opción
+          Orders
         </option>
         <option className={style.optionAZ} value="A-Z">Name (A-Z)</option>
         <option value="Z-A">Name (Z-A)</option>

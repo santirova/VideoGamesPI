@@ -1,9 +1,8 @@
 .detailContainer {
-  background-color: #f7f7f7;
+  background-color: #ecf1f2;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
 }
 
 .detailHeader {
@@ -13,9 +12,10 @@
 }
 
 .detailTitle {
+  font-family: "Bowlby One", sans-serif;
   font-size: 24px;
-  font-weight: bold;
-  color: #0C112B; 
+  font-weight:lighter;
+  color: #041b23; 
 }
 
 .detailContent {
@@ -40,7 +40,7 @@
 .detailSubtitle {
   font-size: 18px;
   font-weight: bold;
-  color: #FF5F00; 
+  color: #0795b3; 
   margin-bottom: 10px;
 }
 
@@ -59,7 +59,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.loading{
-  color: #0C112B
 }

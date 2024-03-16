@@ -3,13 +3,11 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border: 1px solid #ddd;
   border-radius: 5px;
   text-align: center;
-  background-color: #0C112B;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #041b23;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumentar la profundidad de la sombra */
 }
-
 .card .imageContainer {
   width: 100%;
   display: flex;
@@ -38,7 +36,7 @@
 .card .name h2 {
   font-size: 18px;
   margin: 0;
-  color: #fff;
+  color: #ecf1f2;
 }
 
 .card .genres {
@@ -48,7 +46,7 @@
 .card .genres h3 {
   font-size: 16px;
   margin: 0;
-  color: #FFD500;
+  color: #0795b3;
 }
 
 .card .buttonContainer {
@@ -61,13 +59,13 @@
 
 .card .buttonContainer .cardButton {
   padding: 10px 20px;
-  background-color: #FF5F00;
-  color: #fff;
+  background-color: #05bbd5;
+  color: #ecf1f2;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .card .buttonContainer .cardButton:hover {
-  background-color: #c94b01;
+  background-color: #0795b3;
 }

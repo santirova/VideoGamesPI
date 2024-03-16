@@ -1,16 +1,33 @@
 .filterOptions {
-  margin-bottom: 20px;
+
+  background-color: #05bbd5;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute; /* Cambiar a posición absoluta */
+  left: 0; /* Alinear a la derecha */
+  top: 0; /* Alinear arriba */
+}
+.filterOptions:hover{
+  background-color: #0795b3;
 }
 
 .filterButton {
-  background-color: #FFF;
-  color: #FF5F00;
+  display: flex;
+  justify-content: flex-start; /* Alinea el contenido a la izquierda */
+  align-items: center;
+  background-color: #05bbd5;
+  color: #ecf1f2;
   border: none;
+  height: 30px;
+  width: 150px;
   border-radius: 4px;
   cursor: pointer;
-  padding: 6px 12px;
-}
 
+}
+.filterButton:hover{
+  background-color: #0795b3; /* Cambiamos el color del botón al pasar el cursor */
+}
 .filterContent {
   display: flex;
   flex-direction: column;
@@ -37,7 +54,7 @@
 
 .applyButton {
   padding: 6px 12px;
-  background-color: #FF5F00;
+  background-color: #05bbd5;
   color: #FFF;
   border: none;
   border-radius: 4px;

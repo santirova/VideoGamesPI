@@ -6,6 +6,7 @@ import { Pagination } from '../Pagination/Pagination';
 import { Card } from '../Card/Card';
 import { OrderButton } from '../OrderButton/OrderButton';
 import { FilterOptions } from '../FilterOptions/FilterOptions';
+import Loader from '../Loader/Loader';
 
 export const CardsContainer = () => {
   const dispatch = useDispatch();
@@ -31,9 +32,7 @@ export const CardsContainer = () => {
 
   if (isLoading) {
     return (
-      <div className={style.loadingContainer}>
-        <img className={style.loadingImg} src="https://www.gifde.com/gif/otros/decoracion/cargando-loading/cargando-loading-048.gif" alt="Loading..." />
-      </div>
+      <Loader bgColor='#165063'/>
     );
   }
 
